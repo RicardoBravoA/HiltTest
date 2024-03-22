@@ -45,16 +45,18 @@ object ApplicationModule {
         OkHttpClient.Builder()
             .addInterceptor(requestInterceptor)
             .addInterceptor(loggingInterceptor)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
             .build()
 
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL_API)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 }
+
+const val TIME_OUT: Long = 10

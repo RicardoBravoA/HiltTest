@@ -5,6 +5,10 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+apply {
+    from("../devops/jacoco.gradle")
+}
+
 android {
     namespace = "com.rba.hilttest"
     compileSdk = 34
