@@ -5,15 +5,15 @@ import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Before
 
-open class MockkBase {
+open class BaseMockk {
 
     @Before
-    fun setUp() {
+    open fun setUp() {
         MockKAnnotations.init(this)
     }
 
     @After
-    fun tearDown() {
+    open fun tearDown() {
         unmockkAll()
     }
 

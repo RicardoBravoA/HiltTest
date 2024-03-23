@@ -2,7 +2,8 @@ package com.rba.hilttest.data.di
 
 import com.rba.hilttest.data.api.MovieApiModule
 import com.rba.hilttest.data.util.API_KEY
-import com.rba.hilttest.data.util.BASE_URL_API
+import com.rba.hilttest.data.util.BASE_URL
+import com.rba.hilttest.data.util.TIME_OUT
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,11 +53,9 @@ object ApplicationModule {
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL_API)
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 }
-
-const val TIME_OUT: Long = 10

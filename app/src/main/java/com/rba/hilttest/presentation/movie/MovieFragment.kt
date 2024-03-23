@@ -64,7 +64,7 @@ class MovieFragment : Fragment() {
             }
 
             is MovieViewModel.ViewState.Error -> {
-                showToast(viewState.data)
+                showToast(viewState.message)
             }
         }
 

@@ -42,7 +42,7 @@ class MovieViewModel @Inject constructor(
     sealed class ViewState {
         data object ShowLoading : ViewState()
         data object HideLoading : ViewState()
-        data class Error(val data: String) : ViewState()
+        data class Error(val message: String) : ViewState()
         data class Data(val data: List<MovieModel>) : ViewState()
     }
 

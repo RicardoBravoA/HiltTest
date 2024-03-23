@@ -1,6 +1,6 @@
 package com.rba.hilttest.data.datasource
 
-import com.rba.hilttest.base.DataSourceBase
+import com.rba.hilttest.base.BaseDataSource
 import com.rba.hilttest.data.api.MovieApi
 import com.rba.hilttest.data.response.MoviePopularItemResponse
 import com.rba.hilttest.data.response.MoviePopularResponse
@@ -15,7 +15,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit2.Response
 
-class MovieDataSourceImplTest : DataSourceBase() {
+class MovieDataSourceImplTest : BaseDataSource() {
 
     @InjectMockKs
     private lateinit var dataSource: MovieDataSourceImpl

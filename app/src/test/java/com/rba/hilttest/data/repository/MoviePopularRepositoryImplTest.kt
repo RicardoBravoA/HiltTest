@@ -1,6 +1,6 @@
 package com.rba.hilttest.data.repository
 
-import com.rba.hilttest.base.MockkBase
+import com.rba.hilttest.base.BaseMockk
 import com.rba.hilttest.data.datasource.MovieDataSource
 import com.rba.hilttest.data.util.Failure
 import com.rba.hilttest.data.util.ResultType
@@ -13,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class MoviePopularRepositoryImplTest : MockkBase() {
+class MoviePopularRepositoryImplTest : BaseMockk() {
 
     @InjectMockKs
     private lateinit var repository: MoviePopularRepositoryImpl

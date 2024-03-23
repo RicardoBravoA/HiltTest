@@ -1,6 +1,6 @@
 package com.rba.hilttest.domain.usecase
 
-import com.rba.hilttest.base.MockkBase
+import com.rba.hilttest.base.BaseMockk
 import com.rba.hilttest.data.repository.MoviePopularRepository
 import com.rba.hilttest.data.util.Failure
 import com.rba.hilttest.data.util.ResultType
@@ -13,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class MoviePopularUseCaseTest : MockkBase() {
+class MoviePopularUseCaseTest : BaseMockk() {
 
     @MockK
     private lateinit var repository: MoviePopularRepository
