@@ -7,6 +7,7 @@ plugins {
 
 apply {
     from("../devops/jacoco.gradle")
+    from("../devops/sonar.gradle")
 }
 
 android {

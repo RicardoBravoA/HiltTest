@@ -21,6 +21,7 @@ core-testing = "2.1.0"
 coroutines-test = "1.8.0"
 junit-ext = "1.1.5"
 espresso-core = "3.5.1"
+sonar = "3.5.0.2730"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -48,3 +49,4 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 application = { id = "com.android.application", version.ref = "app" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+sonar = { id = "org.sonarqube", version.ref = "sonar" }

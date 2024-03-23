@@ -1,18 +1,36 @@
 # Movies List
 
-Example Project using Clean Architecture, Retrofit, Hilt, Mockk and Jacoco (100% coverage).
+Example Project using Clean Architecture, Retrofit, Hilt, Mockk, Jacoco and SonarQube (100% coverage).
 
-## Coverage
+## Coverage with Jacoco and SonarQube
 
-Use **testDebugUnitTestCoverage**
+For Jacoco Use **testDebugUnitTestCoverage** and SonarQube **sonar**
 
 <img alt="jacoco task" src="./images/task.png"/>
 
 ```bash
+//Jacoco
 ./gradlew :app:testDebugUnitTestCoverage
+
+//Sonar
+./gradlew :app:sonar
 ```
 
 <img alt="coverage" src="./images/jacoco.png" />
+
+<img alt="coverage" src="./images/sonar.png" />
+
+## Update SonarQube credentials
+
+```bash
+// devops/sonar.gradle
+sonar.projectName
+sonar.projectKey
+sonar.host.url
+sonar.login
+```
+>sonar api key is located in **gradle.properties**
+
 
 ## Contributing
 

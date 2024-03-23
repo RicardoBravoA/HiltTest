@@ -26,15 +26,16 @@ class MovieViewModel @Inject constructor(
         viewModelScope.launch {
             _viewState.value = ViewState.ShowLoading
 
-            when (val result = useCase.invoke(page)) {
-                is ResultType.Success -> {
-                    _viewState.value = ViewState.Data(result.value)
-                }
+            val result = useCase(page)
 
-                is ResultType.Error -> {
-                    _viewState.value = ViewState.Error(result.value.message)
-                }
+            if (result is ResultType.Success) {
+                _viewState.value = ViewState.Data(result.value)
             }
+
+            if (result is ResultType.Error) {
+                _viewState.value = ViewState.Error(result.value.message)
+            }
+
             _viewState.value = ViewState.HideLoading
         }
     }
