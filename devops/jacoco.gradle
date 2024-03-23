@@ -34,18 +34,7 @@ project.afterEvaluate {
                     '**/mapper/**',
                     '**/*Activity*.*',
                     '**/*Fragment*.*',
-                    '**/*Adapter*.*',
-                    '**/R.class',
-                    '**/R$*.class',
-
-                    'android/**/*.*',
-                    '**/BuildConfig.*',
-                    '**/*$ViewBinder*.*',
-                    '**/*$ViewInjector*.*',
-                    '**/Lambda$*.class',
-                    '**/Lambda.class',
-                    '**/*Lambda.class',
-                    '**/*Lambda*.class'
+                    '**/*Adapter*.*'
             ]
 
             def coverageSourceDirs = [
