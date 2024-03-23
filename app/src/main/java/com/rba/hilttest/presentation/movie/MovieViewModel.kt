@@ -25,13 +25,15 @@ class MovieViewModel @Inject constructor(
     val error: LiveData<Failure?>
         get() = _error
 
+    private val page = 1
+
     init {
         getPopularMovies()
     }
 
     private fun getPopularMovies() {
         viewModelScope.launch {
-            when (val result = useCase.invoke(1)) {
+            when (val result = useCase.invoke(page)) {
                 is ResultType.Success -> {
                     _popularMovies.value = result.value
                 }

@@ -22,9 +22,9 @@ class MovieDataSourceImpl @Inject constructor(
                 val result = movieApi.popularMovies(page, "en-US")
                 if (result.isSuccessful) {
                     result.body()?.let { response ->
-                        ResultType.Success(response.results?.map {
+                        ResultType.Success(response.results.map {
                             it.toDomain()
-                        } ?: emptyList())
+                        })
                     } ?: run {
                         ResultType.Error(Failure.UnknownError)
                     }
