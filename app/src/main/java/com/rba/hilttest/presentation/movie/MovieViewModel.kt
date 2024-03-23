@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rba.hilttest.data.util.Failure
 import com.rba.hilttest.data.util.ResultType
 import com.rba.hilttest.domain.model.MovieModel
 import com.rba.hilttest.domain.usecase.MoviePopularUseCase
@@ -17,32 +16,34 @@ class MovieViewModel @Inject constructor(
     private val useCase: MoviePopularUseCase,
 ) : ViewModel() {
 
-    private val _popularMovies = MutableLiveData<List<MovieModel>?>()
-    val popularMovies: LiveData<List<MovieModel>?>
-        get() = _popularMovies
-
-    private val _error = MutableLiveData<Failure?>()
-    val error: LiveData<Failure?>
-        get() = _error
+    private val _viewState = MutableLiveData<ViewState>()
+    val viewState: LiveData<ViewState>
+        get() = _viewState
 
     private val page = 1
 
-    init {
-        getPopularMovies()
-    }
-
-    private fun getPopularMovies() {
+    fun getPopularMovies() {
         viewModelScope.launch {
+            _viewState.value = ViewState.ShowLoading
+
             when (val result = useCase.invoke(page)) {
                 is ResultType.Success -> {
-                    _popularMovies.value = result.value
+                    _viewState.value = ViewState.Data(result.value)
                 }
 
                 is ResultType.Error -> {
-                    _error.value = result.value
+                    _viewState.value = ViewState.Error(result.value.message)
                 }
             }
+            _viewState.value = ViewState.HideLoading
         }
+    }
+
+    sealed class ViewState {
+        data object ShowLoading : ViewState()
+        data object HideLoading : ViewState()
+        data class Error(val data: String) : ViewState()
+        data class Data(val data: List<MovieModel>) : ViewState()
     }
 
 }

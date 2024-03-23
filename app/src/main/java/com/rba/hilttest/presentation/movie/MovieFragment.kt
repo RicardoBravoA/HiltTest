@@ -36,13 +36,38 @@ class MovieFragment : Fragment() {
         movieAdapter =
             MovieAdapter { showToast(it.title) }
 
-        viewModel.popularMovies.observe(viewLifecycleOwner) { movieAdapter.submitList(it) }
-
-        viewModel.error.observe(viewLifecycleOwner) { failure -> failure?.let { showToast(it.message) } }
+        viewModel.viewState.observe(viewLifecycleOwner) { updateUI(it) }
 
         binding.movieRecyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.movieRecyclerView.adapter = movieAdapter
+
+        binding.movieSwipeRefreshLayout.setOnRefreshListener {
+            viewModel.getPopularMovies()
+        }
+
+        viewModel.getPopularMovies()
+    }
+
+    private fun updateUI(viewState: MovieViewModel.ViewState) {
+        when (viewState) {
+            is MovieViewModel.ViewState.ShowLoading -> {
+                binding.movieSwipeRefreshLayout.isRefreshing = true
+            }
+
+            is MovieViewModel.ViewState.HideLoading -> {
+                binding.movieSwipeRefreshLayout.isRefreshing = false
+            }
+
+            is MovieViewModel.ViewState.Data -> {
+                movieAdapter.submitList(viewState.data)
+            }
+
+            is MovieViewModel.ViewState.Error -> {
+                showToast(viewState.data)
+            }
+        }
+
     }
 
     override fun onDestroyView() {
